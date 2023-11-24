@@ -17,18 +17,18 @@ public class ApkUtil {
         // Create a FileSource for the apk
         DataEntrySource source =
                 new FileSource(
-                        new File(apkFilePath));
+                new File(apkFilePath));
 
         // Read all dex files starting with "classes"
         DataEntryReader jarReader =
                 new JarReader(
-                        new NameFilteredDataEntryReader("classes*.dex",
-                                new DexClassReader(true, classPoolFiller)));
+                new NameFilteredDataEntryReader("classes*.dex",
+                new DexClassReader(true, classPoolFiller)));
 
         DataEntryReader apkReader =
                 new FilteredDataEntryReader(
-                        new DataEntryNameFilter(
-                                new ExtensionMatcher("apk")), jarReader);
+                new DataEntryNameFilter(
+                new ExtensionMatcher("apk")), jarReader);
 
         source.pumpDataEntries(apkReader);
 
