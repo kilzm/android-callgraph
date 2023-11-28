@@ -1,5 +1,6 @@
-package kilzm.androidcallgraph;
+package kilzm.androidcallgraph.callvisitor;
 
+import kilzm.androidcallgraph.helper.CallStringUtil;
 import proguard.analysis.CallVisitor;
 import proguard.analysis.datastructure.callgraph.Call;
 import proguard.classfile.MethodSignature;
@@ -18,11 +19,7 @@ public class PrintlnCallsCollector implements CallVisitor {
     public void visitCall(Call call) {
         MethodSignature tm = call.getTarget();
         if (tm.getClassName().equals("java/io/PrintStream") && tm.method.equals("println")) {
-            StringBuilder sb = new StringBuilder()
-                    .append(call)
-                    .append(" argument: ")
-                    .append(call.getArgument(0));
-            this.callsToPrintln.add(sb.toString());
+            callsToPrintln.add(CallStringUtil.printCallWithArguments(call));
         }
     }
 }

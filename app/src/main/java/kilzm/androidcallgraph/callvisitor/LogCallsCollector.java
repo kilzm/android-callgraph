@@ -1,5 +1,6 @@
-package kilzm.androidcallgraph;
+package kilzm.androidcallgraph.callvisitor;
 
+import kilzm.androidcallgraph.helper.CallStringUtil;
 import proguard.analysis.CallVisitor;
 import proguard.analysis.datastructure.callgraph.Call;
 import proguard.classfile.MethodSignature;
@@ -19,11 +20,7 @@ public class LogCallsCollector implements CallVisitor {
     public void visitCall(Call call) {
         MethodSignature tm = call.getTarget();
         if (tm.getClassName().equals("android/util/Log")) {
-            StringBuilder sb = new StringBuilder()
-                    .append(call)
-                    .append(" arguments ");
-            IntStream.range(0, call.getArgumentCount()).forEach(i -> sb.append(call.getArgument(i)).append(" "));
-            this.callsToLogMethods.add(sb.toString());
+            this.callsToLogMethods.add(CallStringUtil.printCallWithArguments(call));
         }
     }
 }

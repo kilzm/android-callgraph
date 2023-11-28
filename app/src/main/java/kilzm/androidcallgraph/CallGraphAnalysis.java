@@ -3,6 +3,8 @@ package kilzm.androidcallgraph;
 import java.io.IOException;
 import java.util.*;
 
+import kilzm.androidcallgraph.callvisitor.LogCallsCollector;
+import kilzm.androidcallgraph.callvisitor.PrintlnCallsCollector;
 import kilzm.androidcallgraph.helper.ClassPools;
 import proguard.analysis.CallResolver;
 import proguard.analysis.CallVisitor;
